@@ -1,0 +1,90 @@
+curl -X POST \
+  https://q1pb7gq543.execute-api.us-east-1.amazonaws.com/auth/test-scoring-model/ \
+  -H 'authorization: AWS4-HMAC-SHA256 Credential=ASIAJLFJHXWS67EW45AA/20171004/us-east-1/execute-api/aws4_request, SignedHeaders=content-length;content-type;host;x-amz-date;x-amz-security-token;x-api-key, Signature=13f1f02e2362a0be325d5f92222a9e9f647df9d9145501eeb2b36021e46ce716' \
+  -H 'cache-control: no-cache' \
+  -H 'content-length: 13' \
+  -H 'content-type: application/json' \
+  -H 'host: q1pb7gq543.execute-api.us-east-1.amazonaws.com' \
+  -H 'postman-token: 24bb1123-6fdb-dbff-d29c-22a51397f8d0' \
+  -H 'x-amz-date: 20171004T161940Z' \
+  -H 'x-amz-security-token: FQoDYXdzEBkaDJ3I/r+2FqeCyDauPyLGAcbdLIpC2Sjz8Wpuo0gUuT9lowMo/V5NOJ9ZpnebygOsuxcqtjooKyasu0kHXubnszWGv1z/PqRm+UPQ6DeumAj/wlHFJXW+DAu88w9tAMBQ9i33Qlfay4iQ+uFacUUC8/1KEtISnA8RmMu6s3DZDzUL61vLcUVSI9KIQVcUqxJPPHbiiLZtr5gJ41SiKS7pGaeun9gwPd07Kx88PJXXJy3oe67AMTcE9QtLxrGHT0V0pHO94mW+pyUfdc7qwZGQqWfleDF7qCi13cbFBQ==' \
+  -H 'x-api-key: tDBTsqfUpb9gU1scShECO4zSG64otejz1ondWWvW' \
+  -d '{"x":6,"y":5}'
+
+------------------------------------
+
+ curl --request POST \
+   --url https://q1pb7gq543.execute-api.us-east-1.amazonaws.com/auth/test-scoring-model/ \
+   --header 'authorization: AWS4-HMAC-SHA256 Credential=ASIAJLFJHXWS67EW45AA/20171004/us-east-1/execute-api/aws4_request, SignedHeaders=content-length;content-type;host;x-amz-date;x-amz-security-token;x-api-key, Signature=13f1f02e2362a0be325d5f92222a9e9f647df9d9145501eeb2b36021e46ce716' \
+   --header 'cache-control: no-cache' \
+   --header 'content-length: 13' \
+   --header 'content-type: application/json' \
+   --header 'host: q1pb7gq543.execute-api.us-east-1.amazonaws.com' \
+   --header 'postman-token: e61af786-ba04-ea92-5347-19486daaed33' \
+   --header 'x-amz-date: 20171004T161940Z' \
+   --header 'x-amz-security-token: FQoDYXdzEBkaDJ3I/r+2FqeCyDauPyLGAcbdLIpC2Sjz8Wpuo0gUuT9lowMo/V5NOJ9ZpnebygOsuxcqtjooKyasu0kHXubnszWGv1z/PqRm+UPQ6DeumAj/wlHFJXW+DAu88w9tAMBQ9i33Qlfay4iQ+uFacUUC8/1KEtISnA8RmMu6s3DZDzUL61vLcUVSI9KIQVcUqxJPPHbiiLZtr5gJ41SiKS7pGaeun9gwPd07Kx88PJXXJy3oe67AMTcE9QtLxrGHT0V0pHO94mW+pyUfdc7qwZGQqWfleDF7qCi13cbFBQ==' \
+   --header 'x-api-key: tDBTsqfUpb9gU1scShECO4zSG64otejz1ondWWvW' \
+   --data '{"x":6,"y":5}'
+----------------------------------------------
+
+  import requests
+
+  url = "https://q1pb7gq543.execute-api.us-east-1.amazonaws.com/auth/test-scoring-model/"
+
+  payload = "{\"x\":6,\"y\":5}"
+  headers = {
+      'content-type': "application/json",
+      'x-api-key': "tDBTsqfUpb9gU1scShECO4zSG64otejz1ondWWvW",
+      'host': "q1pb7gq543.execute-api.us-east-1.amazonaws.com",
+      'content-length': "13",
+      'x-amz-date': "20171004T161940Z",
+      'authorization': "AWS4-HMAC-SHA256 Credential=ASIAJLFJHXWS67EW45AA/20171004/us-east-1/execute-api/aws4_request, SignedHeaders=content-length;content-type;host;x-amz-date;x-amz-security-token;x-api-key, Signature=13f1f02e2362a0be325d5f92222a9e9f647df9d9145501eeb2b36021e46ce716",
+      'x-amz-security-token': "FQoDYXdzEBkaDJ3I/r+2FqeCyDauPyLGAcbdLIpC2Sjz8Wpuo0gUuT9lowMo/V5NOJ9ZpnebygOsuxcqtjooKyasu0kHXubnszWGv1z/PqRm+UPQ6DeumAj/wlHFJXW+DAu88w9tAMBQ9i33Qlfay4iQ+uFacUUC8/1KEtISnA8RmMu6s3DZDzUL61vLcUVSI9KIQVcUqxJPPHbiiLZtr5gJ41SiKS7pGaeun9gwPd07Kx88PJXXJy3oe67AMTcE9QtLxrGHT0V0pHO94mW+pyUfdc7qwZGQqWfleDF7qCi13cbFBQ==",
+      'cache-control': "no-cache",
+      'postman-token': "984c9fd7-3960-1637-6029-cd740017b3df"
+      }
+
+  response = requests.request("POST", url, data=payload, headers=headers)
+
+  print(response.text)
+
+  ---------------------------------
+  import http.client
+
+  conn = http.client.HTTPSConnection("q1pb7gq543.execute-api.us-east-1.amazonaws.com")
+
+  payload = "{\"x\":6,\"y\":5}"
+
+  headers = {
+      'content-type': "application/json",
+      'x-api-key': "tDBTsqfUpb9gU1scShECO4zSG64otejz1ondWWvW",
+      'host': "q1pb7gq543.execute-api.us-east-1.amazonaws.com",
+      'content-length': "13",
+      'x-amz-date': "20171004T161940Z",
+      'authorization': "AWS4-HMAC-SHA256 Credential=ASIAJLFJHXWS67EW45AA/20171004/us-east-1/execute-api/aws4_request, SignedHeaders=content-length;content-type;host;x-amz-date;x-amz-security-token;x-api-key, Signature=13f1f02e2362a0be325d5f92222a9e9f647df9d9145501eeb2b36021e46ce716",
+      'x-amz-security-token': "FQoDYXdzEBkaDJ3I/r+2FqeCyDauPyLGAcbdLIpC2Sjz8Wpuo0gUuT9lowMo/V5NOJ9ZpnebygOsuxcqtjooKyasu0kHXubnszWGv1z/PqRm+UPQ6DeumAj/wlHFJXW+DAu88w9tAMBQ9i33Qlfay4iQ+uFacUUC8/1KEtISnA8RmMu6s3DZDzUL61vLcUVSI9KIQVcUqxJPPHbiiLZtr5gJ41SiKS7pGaeun9gwPd07Kx88PJXXJy3oe67AMTcE9QtLxrGHT0V0pHO94mW+pyUfdc7qwZGQqWfleDF7qCi13cbFBQ==",
+      'cache-control': "no-cache",
+      'postman-token': "58bde0ac-aeda-809b-da95-4ab845994595"
+      }
+
+  conn.request("POST", "/auth/test-scoring-model/", payload, headers)
+
+  res = conn.getresponse()
+  data = res.read()
+
+  print(data.decode("utf-8"))
+
+
+  ----------------------
+  POST /auth/test-scoring-model/ HTTP/1.1
+  Content-Type: application/json
+  x-api-key: tDBTsqfUpb9gU1scShECO4zSG64otejz1ondWWvW
+  Host: q1pb7gq543.execute-api.us-east-1.amazonaws.com
+  Content-Length: 13
+  X-Amz-Date: 20171004T161940Z
+  Authorization: AWS4-HMAC-SHA256 Credential=ASIAJLFJHXWS67EW45AA/20171004/us-east-1/execute-api/aws4_request, SignedHeaders=content-length;content-type;host;x-amz-date;x-amz-security-token;x-api-key, Signature=13f1f02e2362a0be325d5f92222a9e9f647df9d9145501eeb2b36021e46ce716
+  X-Amz-Security-Token: FQoDYXdzEBkaDJ3I/r+2FqeCyDauPyLGAcbdLIpC2Sjz8Wpuo0gUuT9lowMo/V5NOJ9ZpnebygOsuxcqtjooKyasu0kHXubnszWGv1z/PqRm+UPQ6DeumAj/wlHFJXW+DAu88w9tAMBQ9i33Qlfay4iQ+uFacUUC8/1KEtISnA8RmMu6s3DZDzUL61vLcUVSI9KIQVcUqxJPPHbiiLZtr5gJ41SiKS7pGaeun9gwPd07Kx88PJXXJy3oe67AMTcE9QtLxrGHT0V0pHO94mW+pyUfdc7qwZGQqWfleDF7qCi13cbFBQ==
+  Cache-Control: no-cache
+  Postman-Token: 847f9b5e-20a8-66e0-1370-0ac2dd7ba4c7
+
+  {"x":6,"y":5}

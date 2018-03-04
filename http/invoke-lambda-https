@@ -1,0 +1,232 @@
+###################Python############################
+import requests
+
+url = "https://lambda.us-east-1.amazonaws.com/2015-03-31/functions/scoring/invocations"
+
+payload = "{\"x\": 6,\"y\": 9}"
+headers = {
+    'x-amz-date': "20180304T020831Z",
+    'authorization': "AWS4-HMAC-SHA256 Credential=ASIAJ25I7AD67LWW66KQ/20180304/us-east-1/lambda/aws4_request, SignedHeaders=content-length;content-type;host;x-amz-date;x-amz-security-token, Signature=e772f9660517d0bb81b7497f07112640372e28aab8f75690f1aa14647ab6ea51",
+    'x-amz-security-token': "FQoDYXdzEDsaDPJO2VN1fyF32SgRSyLnAbvmsE9OtU5X/tFnKW9AIQTA8Pic0cRWO0GmyzrJ/JCuUWfGuawc9xamCui8ngYjdt2tm9hVlnSzB9nU0ZyGYBV9nf0vAi4pblIrQ+BHKWoPoWFdpgMFjnuCCVIEri6a7LdhSebA1Sdt9qhD8y9ecQncixaC9SNZDXo4NBPHrhpFnvnUJenEgvjRoDYwEG3Mp/YCDekYLQy8VcQPhAUdrWcjJ636yqKznjBwPCBJFA55tmZtJeDffck3yYSblD+ierFXy6M9Nz5qjxDAra87DtwBYbFbtCDBVRkbiBr6FkoNrL7VdTcAJCjPpe3UBQ==",
+    'content-type': "application/json",
+    'host': "lambda.us-east-1.amazonaws.com",
+    'cache-control': "no-cache",
+    'postman-token': "284aac18-6c6d-0c10-aa15-24835aa40153"
+    }
+
+response = requests.request("POST", url, data=payload, headers=headers)
+
+print(response.text)
+
+
+##########################python 3 http client #############################
+
+import http.client
+
+conn = http.client.HTTPSConnection("lambda.us-east-1.amazonaws.com")
+
+payload = "{\"x\": 6,\"y\": 9}"
+
+headers = {
+    'x-amz-date': "20180304T020831Z",
+    'authorization': "AWS4-HMAC-SHA256 Credential=ASIAJ25I7AD67LWW66KQ/20180304/us-east-1/lambda/aws4_request, SignedHeaders=content-length;content-type;host;x-amz-date;x-amz-security-token, Signature=e772f9660517d0bb81b7497f07112640372e28aab8f75690f1aa14647ab6ea51",
+    'x-amz-security-token': "FQoDYXdzEDsaDPJO2VN1fyF32SgRSyLnAbvmsE9OtU5X/tFnKW9AIQTA8Pic0cRWO0GmyzrJ/JCuUWfGuawc9xamCui8ngYjdt2tm9hVlnSzB9nU0ZyGYBV9nf0vAi4pblIrQ+BHKWoPoWFdpgMFjnuCCVIEri6a7LdhSebA1Sdt9qhD8y9ecQncixaC9SNZDXo4NBPHrhpFnvnUJenEgvjRoDYwEG3Mp/YCDekYLQy8VcQPhAUdrWcjJ636yqKznjBwPCBJFA55tmZtJeDffck3yYSblD+ierFXy6M9Nz5qjxDAra87DtwBYbFbtCDBVRkbiBr6FkoNrL7VdTcAJCjPpe3UBQ==",
+    'content-type': "application/json",
+    'host': "lambda.us-east-1.amazonaws.com",
+    'cache-control': "no-cache",
+    'postman-token': "ff08e309-babe-eef6-003c-1dc4bb4557fb"
+    }
+
+conn.request("POST", "/2015-03-31/functions/scoring/invocations", payload, headers)
+
+res = conn.getresponse()
+data = res.read()
+
+print(data.decode("utf-8"))
+
+####################Ruby#############################
+require 'uri'
+require 'net/http'
+
+url = URI("https://lambda.us-east-1.amazonaws.com/2015-03-31/functions/scoring/invocations")
+
+http = Net::HTTP.new(url.host, url.port)
+http.use_ssl = true
+http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+
+request = Net::HTTP::Post.new(url)
+request["x-amz-date"] = '20180304T020831Z'
+request["authorization"] = 'AWS4-HMAC-SHA256 Credential=ASIAJ25I7AD67LWW66KQ/20180304/us-east-1/lambda/aws4_request, SignedHeaders=content-length;content-type;host;x-amz-date;x-amz-security-token, Signature=e772f9660517d0bb81b7497f07112640372e28aab8f75690f1aa14647ab6ea51'
+request["x-amz-security-token"] = 'FQoDYXdzEDsaDPJO2VN1fyF32SgRSyLnAbvmsE9OtU5X/tFnKW9AIQTA8Pic0cRWO0GmyzrJ/JCuUWfGuawc9xamCui8ngYjdt2tm9hVlnSzB9nU0ZyGYBV9nf0vAi4pblIrQ+BHKWoPoWFdpgMFjnuCCVIEri6a7LdhSebA1Sdt9qhD8y9ecQncixaC9SNZDXo4NBPHrhpFnvnUJenEgvjRoDYwEG3Mp/YCDekYLQy8VcQPhAUdrWcjJ636yqKznjBwPCBJFA55tmZtJeDffck3yYSblD+ierFXy6M9Nz5qjxDAra87DtwBYbFbtCDBVRkbiBr6FkoNrL7VdTcAJCjPpe3UBQ=='
+request["content-type"] = 'application/json'
+request["host"] = 'lambda.us-east-1.amazonaws.com'
+request["cache-control"] = 'no-cache'
+request["postman-token"] = 'bbffe4fd-5394-f4a7-2426-7044cf2f45c9'
+request.body = "{\"x\": 6,\"y\": 9}"
+
+response = http.request(request)
+puts response.read_body
+
+
+####################Shell#############################
+
+curl --request POST \
+  --url https://lambda.us-east-1.amazonaws.com/2015-03-31/functions/scoring/invocations \
+  --header 'authorization: AWS4-HMAC-SHA256 Credential=ASIAJ25I7AD67LWW66KQ/20180304/us-east-1/lambda/aws4_request, SignedHeaders=content-length;content-type;host;x-amz-date;x-amz-security-token, Signature=e772f9660517d0bb81b7497f07112640372e28aab8f75690f1aa14647ab6ea51' \
+  --header 'cache-control: no-cache' \
+  --header 'content-type: application/json' \
+  --header 'host: lambda.us-east-1.amazonaws.com' \
+  --header 'postman-token: 1479d295-74dd-a007-9592-1e4e28b3b91c' \
+  --header 'x-amz-date: 20180304T020831Z' \
+  --header 'x-amz-security-token: FQoDYXdzEDsaDPJO2VN1fyF32SgRSyLnAbvmsE9OtU5X/tFnKW9AIQTA8Pic0cRWO0GmyzrJ/JCuUWfGuawc9xamCui8ngYjdt2tm9hVlnSzB9nU0ZyGYBV9nf0vAi4pblIrQ+BHKWoPoWFdpgMFjnuCCVIEri6a7LdhSebA1Sdt9qhD8y9ecQncixaC9SNZDXo4NBPHrhpFnvnUJenEgvjRoDYwEG3Mp/YCDekYLQy8VcQPhAUdrWcjJ636yqKznjBwPCBJFA55tmZtJeDffck3yYSblD+ierFXy6M9Nz5qjxDAra87DtwBYbFbtCDBVRkbiBr6FkoNrL7VdTcAJCjPpe3UBQ==' \
+  --data '{"x": 6,"y": 9}'
+
+
+curl -X POST \
+  https://lambda.us-east-1.amazonaws.com/2015-03-31/functions/scoring/invocations \
+  -H 'authorization: AWS4-HMAC-SHA256 Credential=ASIAJ25I7AD67LWW66KQ/20180304/us-east-1/lambda/aws4_request, SignedHeaders=content-length;content-type;host;x-amz-date;x-amz-security-token, Signature=e772f9660517d0bb81b7497f07112640372e28aab8f75690f1aa14647ab6ea51' \
+  -H 'cache-control: no-cache' \
+  -H 'content-type: application/json' \
+  -H 'host: lambda.us-east-1.amazonaws.com' \
+  -H 'postman-token: 7eaec16c-3e27-e55e-4471-c4c5bfb810ef' \
+  -H 'x-amz-date: 20180304T020831Z' \
+  -H 'x-amz-security-token: FQoDYXdzEDsaDPJO2VN1fyF32SgRSyLnAbvmsE9OtU5X/tFnKW9AIQTA8Pic0cRWO0GmyzrJ/JCuUWfGuawc9xamCui8ngYjdt2tm9hVlnSzB9nU0ZyGYBV9nf0vAi4pblIrQ+BHKWoPoWFdpgMFjnuCCVIEri6a7LdhSebA1Sdt9qhD8y9ecQncixaC9SNZDXo4NBPHrhpFnvnUJenEgvjRoDYwEG3Mp/YCDekYLQy8VcQPhAUdrWcjJ636yqKznjBwPCBJFA55tmZtJeDffck3yYSblD+ierFXy6M9Nz5qjxDAra87DtwBYbFbtCDBVRkbiBr6FkoNrL7VdTcAJCjPpe3UBQ==' \
+  -d '{"x": 6,"y": 9}'
+
+####################Go#############################
+
+package main
+
+import (
+	"fmt"
+	"strings"
+	"net/http"
+	"io/ioutil"
+)
+
+func main() {
+
+	url := "https://lambda.us-east-1.amazonaws.com/2015-03-31/functions/scoring/invocations"
+
+	payload := strings.NewReader("{\"x\": 6,\"y\": 9}")
+
+	req, _ := http.NewRequest("POST", url, payload)
+
+	req.Header.Add("x-amz-date", "20180304T020831Z")
+	req.Header.Add("authorization", "AWS4-HMAC-SHA256 Credential=ASIAJ25I7AD67LWW66KQ/20180304/us-east-1/lambda/aws4_request, SignedHeaders=content-length;content-type;host;x-amz-date;x-amz-security-token, Signature=e772f9660517d0bb81b7497f07112640372e28aab8f75690f1aa14647ab6ea51")
+	req.Header.Add("x-amz-security-token", "FQoDYXdzEDsaDPJO2VN1fyF32SgRSyLnAbvmsE9OtU5X/tFnKW9AIQTA8Pic0cRWO0GmyzrJ/JCuUWfGuawc9xamCui8ngYjdt2tm9hVlnSzB9nU0ZyGYBV9nf0vAi4pblIrQ+BHKWoPoWFdpgMFjnuCCVIEri6a7LdhSebA1Sdt9qhD8y9ecQncixaC9SNZDXo4NBPHrhpFnvnUJenEgvjRoDYwEG3Mp/YCDekYLQy8VcQPhAUdrWcjJ636yqKznjBwPCBJFA55tmZtJeDffck3yYSblD+ierFXy6M9Nz5qjxDAra87DtwBYbFbtCDBVRkbiBr6FkoNrL7VdTcAJCjPpe3UBQ==")
+	req.Header.Add("content-type", "application/json")
+	req.Header.Add("host", "lambda.us-east-1.amazonaws.com")
+	req.Header.Add("cache-control", "no-cache")
+	req.Header.Add("postman-token", "e068e426-953e-e41c-4789-814704bcede2")
+
+	res, _ := http.DefaultClient.Do(req)
+
+	defer res.Body.Close()
+	body, _ := ioutil.ReadAll(res.Body)
+
+	fmt.Println(res)
+	fmt.Println(string(body))
+
+}
+
+#################### C# #############################
+
+
+var client = new RestClient("https://lambda.us-east-1.amazonaws.com/2015-03-31/functions/scoring/invocations");
+var request = new RestRequest(Method.POST);
+request.AddHeader("postman-token", "1e953f19-e3a6-f5c0-febc-a21ccc699232");
+request.AddHeader("cache-control", "no-cache");
+request.AddHeader("host", "lambda.us-east-1.amazonaws.com");
+request.AddHeader("content-type", "application/json");
+request.AddHeader("x-amz-security-token", "FQoDYXdzEDsaDPJO2VN1fyF32SgRSyLnAbvmsE9OtU5X/tFnKW9AIQTA8Pic0cRWO0GmyzrJ/JCuUWfGuawc9xamCui8ngYjdt2tm9hVlnSzB9nU0ZyGYBV9nf0vAi4pblIrQ+BHKWoPoWFdpgMFjnuCCVIEri6a7LdhSebA1Sdt9qhD8y9ecQncixaC9SNZDXo4NBPHrhpFnvnUJenEgvjRoDYwEG3Mp/YCDekYLQy8VcQPhAUdrWcjJ636yqKznjBwPCBJFA55tmZtJeDffck3yYSblD+ierFXy6M9Nz5qjxDAra87DtwBYbFbtCDBVRkbiBr6FkoNrL7VdTcAJCjPpe3UBQ==");
+request.AddHeader("authorization", "AWS4-HMAC-SHA256 Credential=ASIAJ25I7AD67LWW66KQ/20180304/us-east-1/lambda/aws4_request, SignedHeaders=content-length;content-type;host;x-amz-date;x-amz-security-token, Signature=e772f9660517d0bb81b7497f07112640372e28aab8f75690f1aa14647ab6ea51");
+request.AddHeader("x-amz-date", "20180304T020831Z");
+request.AddParameter("application/json", "{\"x\": 6,\"y\": 9}", ParameterType.RequestBody);
+IRestResponse response = client.Execute(request);
+
+
+#################### Objective C #############################
+
+
+#import <Foundation/Foundation.h>
+
+NSDictionary *headers = @{ @"x-amz-date": @"20180304T020831Z",
+                           @"authorization": @"AWS4-HMAC-SHA256 Credential=ASIAJ25I7AD67LWW66KQ/20180304/us-east-1/lambda/aws4_request, SignedHeaders=content-length;content-type;host;x-amz-date;x-amz-security-token, Signature=e772f9660517d0bb81b7497f07112640372e28aab8f75690f1aa14647ab6ea51",
+                           @"x-amz-security-token": @"FQoDYXdzEDsaDPJO2VN1fyF32SgRSyLnAbvmsE9OtU5X/tFnKW9AIQTA8Pic0cRWO0GmyzrJ/JCuUWfGuawc9xamCui8ngYjdt2tm9hVlnSzB9nU0ZyGYBV9nf0vAi4pblIrQ+BHKWoPoWFdpgMFjnuCCVIEri6a7LdhSebA1Sdt9qhD8y9ecQncixaC9SNZDXo4NBPHrhpFnvnUJenEgvjRoDYwEG3Mp/YCDekYLQy8VcQPhAUdrWcjJ636yqKznjBwPCBJFA55tmZtJeDffck3yYSblD+ierFXy6M9Nz5qjxDAra87DtwBYbFbtCDBVRkbiBr6FkoNrL7VdTcAJCjPpe3UBQ==",
+                           @"content-type": @"application/json",
+                           @"host": @"lambda.us-east-1.amazonaws.com",
+                           @"cache-control": @"no-cache",
+                           @"postman-token": @"d50d88b3-4a56-f171-27f1-b8c7a243b566" };
+NSDictionary *parameters = @{ @"x": @6,
+                              @"y": @9 };
+
+NSData *postData = [NSJSONSerialization dataWithJSONObject:parameters options:0 error:nil];
+
+NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"https://lambda.us-east-1.amazonaws.com/2015-03-31/functions/scoring/invocations"]
+                                                       cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                                   timeoutInterval:10.0];
+[request setHTTPMethod:@"POST"];
+[request setAllHTTPHeaderFields:headers];
+[request setHTTPBody:postData];
+
+NSURLSession *session = [NSURLSession sharedSession];
+NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request
+                                            completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+                                                if (error) {
+                                                    NSLog(@"%@", error);
+                                                } else {
+                                                    NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
+                                                    NSLog(@"%@", httpResponse);
+                                                }
+                                            }];
+[dataTask resume];
+
+
+#################### http #############################
+
+
+POST /2015-03-31/functions/scoring/invocations HTTP/1.1
+X-Amz-Date: 20180304T020831Z
+Authorization: AWS4-HMAC-SHA256 Credential=ASIAJ25I7AD67LWW66KQ/20180304/us-east-1/lambda/aws4_request, SignedHeaders=content-length;content-type;host;x-amz-date;x-amz-security-token, Signature=e772f9660517d0bb81b7497f07112640372e28aab8f75690f1aa14647ab6ea51
+X-Amz-Security-Token: FQoDYXdzEDsaDPJO2VN1fyF32SgRSyLnAbvmsE9OtU5X/tFnKW9AIQTA8Pic0cRWO0GmyzrJ/JCuUWfGuawc9xamCui8ngYjdt2tm9hVlnSzB9nU0ZyGYBV9nf0vAi4pblIrQ+BHKWoPoWFdpgMFjnuCCVIEri6a7LdhSebA1Sdt9qhD8y9ecQncixaC9SNZDXo4NBPHrhpFnvnUJenEgvjRoDYwEG3Mp/YCDekYLQy8VcQPhAUdrWcjJ636yqKznjBwPCBJFA55tmZtJeDffck3yYSblD+ierFXy6M9Nz5qjxDAra87DtwBYbFbtCDBVRkbiBr6FkoNrL7VdTcAJCjPpe3UBQ==
+Content-Type: application/json
+Host: lambda.us-east-1.amazonaws.com
+Cache-Control: no-cache
+Postman-Token: 1cded4ad-2776-e24c-5a5b-6c547bdd58e0
+
+{"x": 6,"y": 9}
+
+
+#################### Java #############################
+
+OkHttpClient client = new OkHttpClient();
+
+MediaType mediaType = MediaType.parse("application/json");
+RequestBody body = RequestBody.create(mediaType, "{\"x\": 6,\"y\": 9}");
+Request request = new Request.Builder()
+  .url("https://lambda.us-east-1.amazonaws.com/2015-03-31/functions/scoring/invocations")
+  .post(body)
+  .addHeader("x-amz-date", "20180304T020831Z")
+  .addHeader("authorization", "AWS4-HMAC-SHA256 Credential=ASIAJ25I7AD67LWW66KQ/20180304/us-east-1/lambda/aws4_request, SignedHeaders=content-length;content-type;host;x-amz-date;x-amz-security-token, Signature=e772f9660517d0bb81b7497f07112640372e28aab8f75690f1aa14647ab6ea51")
+  .addHeader("x-amz-security-token", "FQoDYXdzEDsaDPJO2VN1fyF32SgRSyLnAbvmsE9OtU5X/tFnKW9AIQTA8Pic0cRWO0GmyzrJ/JCuUWfGuawc9xamCui8ngYjdt2tm9hVlnSzB9nU0ZyGYBV9nf0vAi4pblIrQ+BHKWoPoWFdpgMFjnuCCVIEri6a7LdhSebA1Sdt9qhD8y9ecQncixaC9SNZDXo4NBPHrhpFnvnUJenEgvjRoDYwEG3Mp/YCDekYLQy8VcQPhAUdrWcjJ636yqKznjBwPCBJFA55tmZtJeDffck3yYSblD+ierFXy6M9Nz5qjxDAra87DtwBYbFbtCDBVRkbiBr6FkoNrL7VdTcAJCjPpe3UBQ==")
+  .addHeader("content-type", "application/json")
+  .addHeader("host", "lambda.us-east-1.amazonaws.com")
+  .addHeader("cache-control", "no-cache")
+  .addHeader("postman-token", "636776dc-f793-6611-0a29-2595c3f5b606")
+  .build();
+
+Response response = client.newCall(request).execute();
+
+
+--
+HttpResponse<String> response = Unirest.post("https://lambda.us-east-1.amazonaws.com/2015-03-31/functions/scoring/invocations")
+  .header("x-amz-date", "20180304T020831Z")
+  .header("authorization", "AWS4-HMAC-SHA256 Credential=ASIAJ25I7AD67LWW66KQ/20180304/us-east-1/lambda/aws4_request, SignedHeaders=content-length;content-type;host;x-amz-date;x-amz-security-token, Signature=e772f9660517d0bb81b7497f07112640372e28aab8f75690f1aa14647ab6ea51")
+  .header("x-amz-security-token", "FQoDYXdzEDsaDPJO2VN1fyF32SgRSyLnAbvmsE9OtU5X/tFnKW9AIQTA8Pic0cRWO0GmyzrJ/JCuUWfGuawc9xamCui8ngYjdt2tm9hVlnSzB9nU0ZyGYBV9nf0vAi4pblIrQ+BHKWoPoWFdpgMFjnuCCVIEri6a7LdhSebA1Sdt9qhD8y9ecQncixaC9SNZDXo4NBPHrhpFnvnUJenEgvjRoDYwEG3Mp/YCDekYLQy8VcQPhAUdrWcjJ636yqKznjBwPCBJFA55tmZtJeDffck3yYSblD+ierFXy6M9Nz5qjxDAra87DtwBYbFbtCDBVRkbiBr6FkoNrL7VdTcAJCjPpe3UBQ==")
+  .header("content-type", "application/json")
+  .header("host", "lambda.us-east-1.amazonaws.com")
+  .header("cache-control", "no-cache")
+  .header("postman-token", "9c8d3e0d-6308-44ec-f72c-d0470a627097")
+  .body("{\"x\": 6,\"y\": 9}")
+  .asString();
